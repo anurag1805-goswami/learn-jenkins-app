@@ -1,5 +1,5 @@
 {
-  "name": "learn-jenkins-app",
+  "name": "clearf",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -49,5 +49,13 @@
     "titleTemplate": "{classname}-{title}",
     "ancestorSeparator": " › ",
     "usePathForSuiteName": "true"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "playwright.config.js",
+  "repository": {
+    "type": "git",
+    "url": "clear"
+  },
+  "author": "",
+  "license": "ISC"
 }

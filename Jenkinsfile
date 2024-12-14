@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo 'Test stage'
                 sh '''
-                  grep "index.html" /build/**
+                  grep "index.html" build/
                   '''
             }
         }
