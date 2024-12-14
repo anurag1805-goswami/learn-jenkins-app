@@ -19,9 +19,14 @@ pipeline {
                      npm run build
                   '''  
 
-                
+                }
+        }
+        stage('Test'){
+            steps {
+                echo 'Test stage'
             }
         }
     }
+    
 }
 
