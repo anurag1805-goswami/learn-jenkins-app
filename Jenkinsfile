@@ -24,13 +24,32 @@ pipeline {
         stage('Test'){
             agent {
                 docker {
-                    image 'node:18-alpine'
+                    image 'mcr.microsoft.com/playwright:v1.49.1-noble'
                     reuseNode true
 
                 }
             }
             steps { 
                 echo 'Test stage'
+                sh '''
+                  npm install serve
+                  node_modules/.bin/serve -s build &
+                  sleep 10
+                  npx playwright test
+                  '''
+            }
+        }
+
+        stage('E2E'){
+            agent {
+                docker {
+                    image 'playwright:v1.49.1-noble'
+                    reuseNode true
+
+                }
+            }
+            steps { 
+                echo 'E2E stage'
                 sh '''
                   test -f build/index.html
                   npm test
