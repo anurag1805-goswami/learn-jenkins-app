@@ -24,7 +24,7 @@ pipeline {
         stage('Test'){
             agent {
                 docker {
-                    image 'mcr.microsoft.com/playwright:v1.49.1-noble'
+                    image 'node:18-alpine'
                     reuseNode true
 
                 }
