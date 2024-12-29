@@ -22,9 +22,9 @@ pipeline {
                 //node --version used to check the currently installed version of Node.js on your system.
                 //npm ci command is used to install dependencies in a Node.js project
                  
-            }
+        }
         stage('Test') {
-            steps{
+            steps {
                 echo 'Test stage'
             }
         }
