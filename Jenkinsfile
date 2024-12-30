@@ -29,6 +29,7 @@ pipeline {
                 echo 'Test'
                 sh '''
                 test -f build/index.html
+                mpm test
                 '''
             }
 
