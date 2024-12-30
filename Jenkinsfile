@@ -23,7 +23,8 @@ pipeline {
                 //npm ci command is used to install dependencies in a Node.js project
                  
         }
-        stage('Test'){
+    }
+        stage('Test') {
             steps {
                 echo 'Test'
             }
@@ -34,4 +35,4 @@ pipeline {
 
   }
 
-}
+
