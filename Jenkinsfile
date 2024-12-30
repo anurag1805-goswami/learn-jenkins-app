@@ -68,7 +68,7 @@ pipeline {
                         '''
                     }
                 }
-                   post {
+                post {
                     always {
                         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                     }
