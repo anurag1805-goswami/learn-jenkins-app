@@ -41,6 +41,12 @@ pipeline {
       }
             
     }
+// This section is after the stages 
+    post {
+        always {
+            junit 'test-results/junit.xml'
+        }
+    }
 
   }
 
