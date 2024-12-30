@@ -38,20 +38,19 @@ pipeline {
                             reuseNode true
                         }
                     }
+
                     steps {
-                        echo 'Test'
                         sh '''
                     #test -f build/index.html
                     npm test
                     '''
                     }
-                }
                 post {
                     always {
                         junit 'jest-results/junit.xml'
                     }
                 }
-                
+
                 stage('E2E') {
                     agent {
                         docker {
