@@ -28,8 +28,10 @@ pipeline {
                 echo 'Test'
             }
 
-    }
+      }
             
-        }
     }
+
+  }
+
 }
