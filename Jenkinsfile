@@ -1,7 +1,9 @@
 pipeline {
     agent any
 
+    
     stages {
+        /*
         stage('Build') {
             agent{
                 docker {
@@ -23,7 +25,12 @@ pipeline {
                 //npm ci command is used to install dependencies in a Node.js project
                  
         }
+       
     }
+
+    */
+
+    // reuseNode true needs to be amended in every stage to get the same node and workspace to have  common.
         stage('Test') {
             agent {
                 docker {
@@ -34,7 +41,7 @@ pipeline {
             steps {
                 echo 'Test'
                 sh '''
-                test -f build/index.html
+                #test -f build/index.html
                 npm test
                 '''
             }
