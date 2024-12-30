@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-    
     stages {
         /*
         stage('Build') {
@@ -17,43 +16,41 @@ pipeline {
                 ls -la
                 node --version
                 npm --version
-                npm ci 
+                npm ci
                 npm run build
                 ls -la
                 '''
                 //node --version used to check the currently installed version of Node.js on your system.
                 //npm ci command is used to install dependencies in a Node.js project
-                 
+
+            }
+
         }
-       
-    }
 
     */
 
-        stage ('Tests') {
+        stage('Tests') {
             parallel {
-                stage('Test') {
-                agent {
-                    docker {
-                        image 'node:18-alpine'
-                        reuseNode true
+                stage('Unit Test') {
+                    agent {
+                        docker {
+                            image 'node:18-alpine'
+                            reuseNode true
+                        }
                     }
-                }
-                steps {
-                    echo 'Test'
-                    sh '''
+                    steps {
+                        echo 'Test'
+                        sh '''
                     #test -f build/index.html
                     npm test
                     '''
+                    }
                 }
-
-        }
-        post {
-        always {
-            junit 'jest-results/junit.xml'
-            
-        }
-    }  
+                post {
+                    always {
+                        junit 'jest-results/junit.xml'
+                    }
+                }
                 stage('E2E') {
                     agent {
                         docker {
@@ -68,23 +65,14 @@ pipeline {
                         sleep 10
                         npx playwright test --reporter=html
                         '''
-                    } 
+                    }
                 }
                 post {
-                  always {
-                    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                    always {
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+                    }
+                }
+            }
         }
     }
-            } 
-        }
-
-    // reuseNode true needs to be amended in every stage to get the same node and workspace to have  common.
-        
-            
-    }
-// This section is after the stages 
-    
-
-  }
-
-
+}
