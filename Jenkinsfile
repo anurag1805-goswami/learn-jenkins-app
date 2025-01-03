@@ -1,5 +1,3 @@
-#Leanrning Jenkins
-
 pipeline {
     agent any
     
